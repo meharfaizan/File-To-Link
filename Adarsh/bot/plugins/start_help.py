@@ -13,7 +13,7 @@ from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size
 db = Database(Var.DATABASE_URL, Var.name)
 from pyrogram.types import ReplyKeyboardMarkup
 
-force_channels = ['EminenceinShadowDub', 'spyxfamilydualaudio480p', 'animedualaudiox'] 
+force_channels = 'EminenceinShadowDub', 'spyxfamilydualaudio480p', 'animedualaudiox'
                       
 @StreamBot.on_message(filters.command('start') & filters.private)
 async def start(b, m):
