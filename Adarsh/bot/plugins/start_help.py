@@ -12,8 +12,6 @@ from pyrogram.errors import UserNotParticipant
 from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size
 db = Database(Var.DATABASE_URL, Var.name)
 from pyrogram.types import ReplyKeyboardMarkup
-
-force_channels = 'EminenceinShadowDub', 'spyxfamilydualaudio480p', 'animedualaudiox'
                       
 @StreamBot.on_message(filters.command('start') & filters.private)
 async def start(b, m):
@@ -100,6 +98,7 @@ async def start(b, m):
                     text="**𝙰𝙳𝙳 𝙵𝙾𝚁𝙲𝙴 𝚂𝚄𝙱 𝚃𝙾 𝙰𝙽𝚈 𝙲𝙷𝙰𝙽𝙽𝙴𝙻**",
                     disable_web_page_preview=True)
                 return
+force_channels = 'EminenceinShadowDub', 'spyxfamilydualaudio480p', 'animedualaudiox'              
 @Bot.on_message(filters.command('start') & filters.private & subscribed)
 async def start_command(client: Client, message: Message):
     if force_channels: 
