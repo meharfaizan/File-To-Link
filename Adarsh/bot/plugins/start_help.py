@@ -14,23 +14,6 @@ db = Database(Var.DATABASE_URL, Var.name)
 from pyrogram.types import ReplyKeyboardMarkup
 
 force_channels = ['EminenceinShadowDub', 'spyxfamilydualaudio480p', 'animedualaudiox'] 
-@Bot.on_message(filters.command('start') & filters.private & subscribed)
-async def start_command(client: Client, message: Message):
-    if force_channels: 
-        try:
-            user = await client.get_chat_member(force_channels, message.from_user.id)
-            if user.status =="kicked out":
-                await message.reply_text("Your are banned")
-                return
-        except UserNotParticipant:
-            await message.reply_text(
-                text="You are not Subscribed to @EminenceinShadowDub",
-                reply_markup= InlineKeyboardMarkup(  [[
-                 InlineKeyboardButton("Update Channel", url=f"t.me/{force_channels}")
-                 ]]
-                )
-            )
-            return
                       
 @StreamBot.on_message(filters.command('start') & filters.private)
 async def start(b, m):
@@ -117,7 +100,23 @@ async def start(b, m):
                     text="**𝙰𝙳𝙳 𝙵𝙾𝚁𝙲𝙴 𝚂𝚄𝙱 𝚃𝙾 𝙰𝙽𝚈 𝙲𝙷𝙰𝙽𝙽𝙴𝙻**",
                     disable_web_page_preview=True)
                 return
-
+@Bot.on_message(filters.command('start') & filters.private & subscribed)
+async def start_command(client: Client, message: Message):
+    if force_channels: 
+        try:
+            user = await client.get_chat_member(force_channels, message.from_user.id)
+            if user.status =="kicked out":
+                await message.reply_text("Your are banned")
+                return
+        except UserNotParticipant:
+            await message.reply_text(
+                text="You are not Subscribed to @EminenceinShadowDub",
+                reply_markup= InlineKeyboardMarkup(  [[
+                 InlineKeyboardButton("Update Channel", url=f"t.me/{force_channels}")
+                 ]]
+                )
+            )
+            return
         get_msg = await b.get_messages(chat_id=Var.BIN_CHANNEL, ids=int(usr_cmd))
 
         file_size = None
