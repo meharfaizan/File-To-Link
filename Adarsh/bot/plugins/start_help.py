@@ -13,6 +13,24 @@ from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size
 db = Database(Var.DATABASE_URL, Var.name)
 from pyrogram.types import ReplyKeyboardMarkup
 
+force_channels = ['https://t.me/EminenceinShadowDub', 'spyxfamilydualaudio480p', 'animedualaudiox'] 
+@Bot.on_message(filters.command('start') & filters.private & subscribed)
+async def start_command(client: Client, message: Message):
+    if force_channels: 
+        try:
+            user = await client.get_chat_member(force_channels, message.from_user.id)
+            if user.status =="kicked out":
+                await message.reply_text("Your are banned")
+                return
+        except UserNotParticipant:
+            await message.reply_text(
+                text="You are not Subscribed to @EminenceinShadowDub",
+                reply_markup= InlineKeyboardMarkup(  [[
+                 InlineKeyboardButton("Update Channel", url=f"t.me/{force_channels}")
+                 ]]
+                )
+            )
+            return
                       
 @StreamBot.on_message(filters.command('start') & filters.private)
 async def start(b, m):
